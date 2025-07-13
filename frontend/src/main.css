@@ -1,0 +1,74 @@
+* {
+  /* border: 1px yellow solid; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  text-align: center;
+}
+
+#countdown {
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  width: 75px;
+  margin: 5px;
+}
+
+.hole {
+  background: url("/hole.png");
+  background-size: cover;
+  height: 125px;
+  width: 150px;
+}
+
+.mole {
+  background-image: url("/mole.png");
+  height: 125px;
+  width: 150px;
+  background-size: cover;
+}
+
+.mole:hover {
+  cursor: pointer;
+}
+
+#holes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+#holes button {
+  margin: 2.5px;
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#scoreboard span {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(204, 198, 198);
+}
+
+#scoreboard button {
+  margin: 5px;
+  padding: 6.5px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(204, 198, 198);
+}
+
+h1 {
+  margin: 15px;
+}

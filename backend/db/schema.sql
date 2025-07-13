@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS jamify;
+CREATE DATABASE jamify;
+
+\c jamify;
