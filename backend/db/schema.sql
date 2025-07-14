@@ -19,7 +19,8 @@ CREATE TABLE artists(
     id serial PRIMARY KEY,
     created_at timestamp DEFAULT now(),
     name text NOT NULL,
-    bio text NOT NULL
+    bio text NOT NULL,
+    avatar_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32'
 );
 
 CREATE TABLE songs(
@@ -29,6 +30,7 @@ CREATE TABLE songs(
     duration decimal NOT NULL,
     file_url text NOT NULL,
     artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
+    thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32',
     listens integer DEFAULT 0
 );
 

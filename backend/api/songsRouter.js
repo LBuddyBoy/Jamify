@@ -43,9 +43,9 @@ router.get("/", async (_req, res) => {
 router.post(
   "/",
   upload.single("file"),
-  requireBody(["title"]),
+  requireBody(["title", "artist_id", "thumbnail_url"]),
   async (req, res) => {
-    const { title, artist_id } = req.body;
+    const { title, artist_id, thumbnail_url } = req.body;
     const file = req.file;
     if (!file) {
       return res.status(400).json({ error: "No file uploaded" });
@@ -62,7 +62,7 @@ router.post(
       await s3.send(new PutObjectCommand(params));
       const duration = await extractDuration(file);
       const file_url = `https://${BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
-      const song = await createSong({ title, duration, file_url, artist_id });
+      const song = await createSong({ title, duration, file_url, artist_id, thumbnail_url });
       res.status(201).json(song);
     } catch (err) {
       console.error("S3 error:", err);

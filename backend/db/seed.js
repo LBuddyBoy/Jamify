@@ -29,12 +29,36 @@ async function seed() {
   ];
 
   const artists = [
-    { name: "Bryson Tiller", bio: customFaker.lorem.paragraph() },
-    { name: "Jhene Aiko", bio: customFaker.lorem.paragraph() },
-    { name: "Miguel", bio: customFaker.lorem.paragraph() },
-    { name: "SZA", bio: customFaker.lorem.paragraph() },
-    { name: "Tory Lanes", bio: customFaker.lorem.paragraph() },
-    { name: "Veto", bio: customFaker.lorem.paragraph() },
+    {
+      name: "Bryson Tiller",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
+    {
+      name: "Jhene Aiko",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
+    {
+      name: "Miguel",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
+    {
+      name: "SZA",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
+    {
+      name: "Tory Lanes",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
+    {
+      name: "Veto",
+      bio: customFaker.lorem.paragraph(),
+      avatar_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
+    },
   ];
 
   const songs = [
@@ -43,36 +67,42 @@ async function seed() {
       duration: 60.0 * 4.0 + 23.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Bryson Tiller - Let Em' Know (Audio).mp4`,
       artist_id: 1,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
     {
       title: "Moments",
       duration: 60.0 * 3.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Jhené Aiko - Moments ft. Big Sean (Official Audio).mp4`,
       artist_id: 2,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
     {
       title: "coffee",
       duration: 60.0 * 4.0 + 48.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Miguel - coffee (Official Audio).mp4`,
       artist_id: 3,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
     {
       title: "2AM",
       duration: 60.0 * 4.0 + 4.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/SZA - 2AM (Official Audio).mp4`,
       artist_id: 4,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
     {
       title: "This is Just The Intro",
       duration: 60.0 * 5.0 + 26.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Tory Lanez - And This is Just The Intro [Official Visualizer].mp4`,
       artist_id: 5,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
     {
       title: "You Got It",
       duration: 60.0 * 3.0 + 40.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Vedo - You Got It (Official Music Video).mp4`,
       artist_id: 6,
+      thumbnail_url: "https://www.gravatar.com/avatar/?d=mp&s=32",
     },
   ];
 
