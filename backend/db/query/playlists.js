@@ -65,7 +65,16 @@ export async function getPlaylistById(id) {
     SELECT playlists.*, json_agg(playlist_songs.song) AS songs
     FROM playlists
     JOIN (
-        SELECT playlist_songs.*, row_to_json(songs) AS song
+        SELECT playlist_songs.*, json_build_object(
+            'added_at', playlist_songs.added_at,
+            'id', songs.id,
+            'artist_id', songs.artist_id,
+            'title', songs.title,
+            'duration', songs.duration,
+            'listens', songs.listens,
+            'thumbnail_url', songs.thumbnail_url,
+            'uploaded_at', songs.uploaded_at
+        ) AS song
         FROM playlist_songs
         JOIN songs ON songs.id = playlist_songs.song_id
     ) playlist_songs ON playlist_songs.playlist_id = $1

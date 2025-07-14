@@ -1,74 +1,55 @@
+:root {
+  --bg-color: #f4f4f6;
+  --bg-accent: #a259f7;
+  --bg-secondary: #e3e6ee;
+  --primary-color: #7c3aed;
+  --text-color: #1a1a1d;
+  --text-muted: #9eadbe;
+  --header-color: rgba(255, 255, 255, 0.9);
+  --cta-color: #f472b6;
+  --error-color: #ef4444;
+  --font-main: "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.2rem;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-color: #23242a;
+  --bg-accent: #a259f7;
+  --bg-secondary: #2e3037;
+  --text-color: #eaeaea;
+  --text-muted: #8e99a7;
+  --header-color: rgba(30, 32, 36, 0.92);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: var(--font-main);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition), color var(--transition);
+  box-sizing: border-box;
+}
+
 * {
-  /* border: 1px yellow solid; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-#root {
-  text-align: center;
+.main-content {
+  margin-left: 230px;
+  transition: margin 0.3s var(--transition);
 }
 
-#countdown {
-  text-align: center;
-  width: 100%;
-}
-
-button {
-  width: 75px;
-  margin: 5px;
-}
-
-.hole {
-  background: url("/hole.png");
-  background-size: cover;
-  height: 125px;
-  width: 150px;
-}
-
-.mole {
-  background-image: url("/mole.png");
-  height: 125px;
-  width: 150px;
-  background-size: cover;
-}
-
-.mole:hover {
-  cursor: pointer;
-}
-
-#holes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 1rem;
-  gap: 1rem;
-}
-
-#holes button {
-  margin: 2.5px;
-}
-
-#game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#scoreboard span {
-  margin: 5px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: rgb(204, 198, 198);
-}
-
-#scoreboard button {
-  margin: 5px;
-  padding: 6.5px;
-  border-radius: 5px;
-  border: none;
-  background-color: rgb(204, 198, 198);
-}
-
-h1 {
-  margin: 15px;
+main {
+  padding: 15px;
 }

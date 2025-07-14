@@ -1,0 +1,113 @@
+.playlistInfoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+
+.playlistInfoContainer .playlistHeader {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.playlistInfoContainer .playlistHeader img {
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  box-shadow: 0 2px 12px rgba(162, 89, 247, 0.11);
+}
+
+.playlistHeaderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.playlistHeaderInfo h1 {
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+  margin-left: 2px;
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+
+.playlistHeaderInfo .playlist-owner {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-left: 2px;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.playlistHeaderInfo .playlist-meta {
+  font-size: 0.97rem;
+  color: var(--text-muted);
+  margin-left: 2px;
+  display: flex;
+  gap: 0.5em;
+}
+
+.playlistInfoContainer .playlistSongs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5ch;
+  margin-top: 18px;
+}
+
+.songCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  padding: 10px 16px;
+  border-radius: 10px;
+  transition: background 0.2s;
+  margin-bottom: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  transition: ease-in-out opacity 0.3s;
+}
+
+.songCard:hover {
+  opacity: 50%;
+  color: #fff;
+}
+
+.songCard .songCardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.5ch;
+}
+
+.songCard .songCardHeader img {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: var(--bg-color);
+}
+
+.songCard .songCardHeader h3 {
+  font-size: 1.05rem;
+  color: var(--text-color);
+}
+
+.songCard p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  margin-left: 10px;
+  min-width: 55px;
+  text-align: right;
+}

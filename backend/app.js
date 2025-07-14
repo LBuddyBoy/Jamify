@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 
 app.use((err, req, res, next) => {
   switch (err.code) {
+    case "23505":
+      return res.status(400).send(err.detail);
     default:
       next(err);
   }

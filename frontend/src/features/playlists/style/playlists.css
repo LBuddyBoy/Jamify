@@ -1,0 +1,25 @@
+.playlistsContainer {
+
+}
+
+.playlists {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlistCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0ch;
+    width: 250px;
+    height: 80px;
+    padding: 5px;
+}
+
+.playlistCard img {
+    width: 50px;
+    width: 50px;
+    object-fit: contain;
+}

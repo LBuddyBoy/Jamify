@@ -12,7 +12,8 @@ CREATE TABLE playlists(
     id serial PRIMARY KEY,
     created_at timestamp DEFAULT now(),
     name varchar(25) NOT NULL,
-    owner_id integer NOT NULL
+    owner_id integer NOT NULL,
+    image_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32'
 );
 
 CREATE TABLE artists(
@@ -27,7 +28,7 @@ CREATE TABLE songs(
     id serial PRIMARY KEY,
     uploaded_at timestamp DEFAULT now(),
     title text NOT NULL,
-    duration decimal NOT NULL,
+    duration decimal(10, 2) NOT NULL,
     file_url text NOT NULL,
     artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
     thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32',
@@ -37,5 +38,6 @@ CREATE TABLE songs(
 CREATE TABLE playlist_songs(
     playlist_id integer REFERENCES playlists(id) ON DELETE CASCADE,
     song_id integer REFERENCES songs(id) ON DELETE CASCADE,
+    added_at timestamp DEFAULT now(),
     PRIMARY KEY (playlist_id, song_id)
 );
