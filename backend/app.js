@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import playlistRouter from "#api/playlistRouter";
+import songsRouter from "#api/songsRouter";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json({ limit: "5mb" }));
 app.use(morgan("dev"));
 
 app.use("/playlists", playlistRouter);
+app.use("/songs", songsRouter);
 
 app.get("/", (req, res) => {
     res.send("Jamify Online ✅");

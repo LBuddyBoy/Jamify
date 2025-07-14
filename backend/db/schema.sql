@@ -4,6 +4,8 @@ CREATE DATABASE jamify;
 \c jamify;
 
 DROP TABLE IF EXISTS playlists;
+DROP TABLE IF EXISTS songs;
+DROP TABLE IF EXISTS artists;
 
 CREATE TABLE playlists(
     id serial PRIMARY KEY,
@@ -23,6 +25,5 @@ CREATE TABLE songs(
     id serial PRIMARY KEY,
     uploaded_at timestamp DEFAULT now(),
     title text NOT NULL,
-    description text NOT NULL,
     file_url text NOT NULL
 );
