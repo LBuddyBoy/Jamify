@@ -3,8 +3,9 @@ CREATE DATABASE jamify;
 
 \c jamify;
 
-DROP TABLE IF EXISTS playlists;
+DROP TABLE IF EXISTS playlist_songs;
 DROP TABLE IF EXISTS songs;
+DROP TABLE IF EXISTS playlists;
 DROP TABLE IF EXISTS artists;
 
 CREATE TABLE playlists(
@@ -25,5 +26,14 @@ CREATE TABLE songs(
     id serial PRIMARY KEY,
     uploaded_at timestamp DEFAULT now(),
     title text NOT NULL,
-    file_url text NOT NULL
+    duration decimal NOT NULL,
+    artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
+    file_url text NOT NULL,
+    listens integer DEFAULT 0
+);
+
+CREATE TABLE playlist_songs(
+    playlist_id integer REFERENCES playlists(id) ON DELETE CASCADE,
+    song_id integer REFERENCES songs(id) ON DELETE CASCADE,
+    PRIMARY KEY (playlist_id, song_id)
 );
