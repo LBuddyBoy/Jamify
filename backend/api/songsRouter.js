@@ -15,6 +15,10 @@ const s3 = new S3Client({
   },
 });
 
+router.get("/", async (req, res) => {
+
+});
+
 router.post("/", upload.single("file"), async (req, res) => {
   const file = req.file;
   const { title } = req.body;
