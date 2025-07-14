@@ -27,8 +27,8 @@ CREATE TABLE songs(
     uploaded_at timestamp DEFAULT now(),
     title text NOT NULL,
     duration decimal NOT NULL,
-    artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
     file_url text NOT NULL,
+    artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
     listens integer DEFAULT 0
 );
 

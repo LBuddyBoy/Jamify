@@ -1,15 +1,17 @@
 import db from "#db/client";
 
-export async function createArtist({name, bio}) {
-    const SQL = `
+export async function createArtist({ name, bio }) {
+  const SQL = `
     INSERT INTO artists(name, bio)
     VALUES($1, $2)
     RETURNING *
     `;
 
-    const {rows: [artist]} = await db.query(SQL, [name, bio]);
+  const {
+    rows: [artist],
+  } = await db.query(SQL, [name, bio]);
 
-    return artist;
+  return artist;
 }
 
 export async function deleteArtist(id) {
@@ -69,4 +71,18 @@ export async function getArtistById(id) {
   } = await db.query(SQL, [id]);
 
   return artist;
+}
+
+export async function getArtistSongs(id) {
+  const SQL = `
+    SELECT artists.*, json_agg(songs) AS songs
+    FROM artists
+    JOIN songs ON songs.artist_id = $1
+    WHERE artists.id = $1
+    GROUP BY artists.id
+    `;
+
+  const { rows } = await db.query(SQL, [id]);
+
+  return rows;
 }

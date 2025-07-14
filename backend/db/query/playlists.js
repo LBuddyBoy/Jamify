@@ -62,8 +62,15 @@ export async function getPlaylists() {
 
 export async function getPlaylistById(id) {
   const SQL = `
-    SELECT * FROM playlists
+    SELECT playlists.*, json_agg(playlist_songs.song) AS songs
+    FROM playlists
+    JOIN (
+        SELECT playlist_songs.*, row_to_json(songs) AS song
+        FROM playlist_songs
+        JOIN songs ON songs.id = playlist_songs.song_id
+    ) playlist_songs ON playlist_songs.playlist_id = $1
     WHERE id = $1
+    GROUP BY playlists.id
     `;
 
   const {

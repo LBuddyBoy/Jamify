@@ -3,6 +3,7 @@ import { base, de, de_CH, en, Faker } from "@faker-js/faker";
 import { createPlaylist, getPlaylists } from "./query/playlists.js";
 import { createSong, getSongs } from "./query/songs.js";
 import { addToPlaylist } from "./query/playlist_songs.js";
+import { createArtist } from "./query/artists.js";
 
 const customLocale = {
   title: "My custom locale",
@@ -28,12 +29,12 @@ async function seed() {
   ];
 
   const artists = [
-    {name: "Bryson Tiller", bio: customFaker.lorem.paragraph()},
-    {name: "Jhene Aiko", bio: customFaker.lorem.paragraph()},
-    {name: "Miguel", bio: customFaker.lorem.paragraph()},
-    {name: "SZA", bio: customFaker.lorem.paragraph()},
-    {name: "Tory Lanes", bio: customFaker.lorem.paragraph()},
-    {name: "Veto", bio: customFaker.lorem.paragraph()}
+    { name: "Bryson Tiller", bio: customFaker.lorem.paragraph() },
+    { name: "Jhene Aiko", bio: customFaker.lorem.paragraph() },
+    { name: "Miguel", bio: customFaker.lorem.paragraph() },
+    { name: "SZA", bio: customFaker.lorem.paragraph() },
+    { name: "Tory Lanes", bio: customFaker.lorem.paragraph() },
+    { name: "Veto", bio: customFaker.lorem.paragraph() },
   ];
 
   const songs = [
@@ -41,31 +42,37 @@ async function seed() {
       title: "Let Em' Know",
       duration: 60.0 * 4.0 + 23.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Bryson Tiller - Let Em' Know (Audio).mp4`,
+      artist_id: 1,
     },
     {
       title: "Moments",
       duration: 60.0 * 3.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Jhené Aiko - Moments ft. Big Sean (Official Audio).mp4`,
+      artist_id: 2,
     },
     {
       title: "coffee",
       duration: 60.0 * 4.0 + 48.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Miguel - coffee (Official Audio).mp4`,
+      artist_id: 3,
     },
     {
       title: "2AM",
       duration: 60.0 * 4.0 + 4.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/SZA - 2AM (Official Audio).mp4`,
+      artist_id: 4,
     },
     {
       title: "This is Just The Intro",
       duration: 60.0 * 5.0 + 26.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Tory Lanez - And This is Just The Intro [Official Visualizer].mp4`,
+      artist_id: 5,
     },
     {
       title: "You Got It",
       duration: 60.0 * 3.0 + 40.0,
       file_url: `songs/https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/songs/Vedo - You Got It (Official Music Video).mp4`,
+      artist_id: 6,
     },
   ];
 
@@ -73,6 +80,12 @@ async function seed() {
     const playlist = playlists[index];
 
     await createPlaylist(playlist);
+  }
+
+  for (const index in artists) {
+    const artist = artists[index];
+
+    await createArtist(artist);
   }
 
   for (const index in songs) {

@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import playlistRouter from "#api/playlistRouter";
 import songsRouter from "#api/songsRouter";
+import artistsRouter from "#api/artistsRouter";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(morgan("dev"));
 
 app.use("/playlists", playlistRouter);
 app.use("/songs", songsRouter);
+app.use("/artists", artistsRouter);
 
 app.get("/", (req, res) => {
     res.send("Jamify Online ✅");
