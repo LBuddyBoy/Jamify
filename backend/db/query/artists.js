@@ -73,16 +73,16 @@ export async function getArtistById(id) {
   return artist;
 }
 
-export async function getArtistSongs(id) {
+export async function getArtistSongs(id, start, limit) {
   const SQL = `
     SELECT artists.*, json_agg(songs) AS songs
     FROM artists
-    JOIN songs ON songs.artist_id = $1
+    JOIN songs ON songs.artist_id = $1 AND 
     WHERE artists.id = $1
     GROUP BY artists.id
     `;
 
-  const { rows } = await db.query(SQL, [id]);
+  const { rows } = await db.query(SQL, [id, start, limit]);
 
   return rows;
 }

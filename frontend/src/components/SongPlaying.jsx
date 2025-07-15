@@ -28,6 +28,7 @@ export default function SongPlaying() {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0.5;
+      console.log("Found refernece");
     }
   }, []);
 

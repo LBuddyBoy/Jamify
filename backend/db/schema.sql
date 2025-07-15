@@ -4,6 +4,7 @@ CREATE DATABASE jamify;
 \c jamify;
 
 DROP TABLE IF EXISTS playlist_songs;
+DROP TABLE IF EXISTS albums;
 DROP TABLE IF EXISTS songs;
 DROP TABLE IF EXISTS playlists;
 DROP TABLE IF EXISTS artists;
@@ -24,6 +25,14 @@ CREATE TABLE artists(
     avatar_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32'
 );
 
+CREATE TABLE albums(
+    id serial PRIMARY KEY,
+    artist_id integer REFERENCES artists(id),
+    created_at timestamp DEFAULT now(),
+    name text NOT NULL,
+    thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32'
+);
+
 CREATE TABLE songs(
     id serial PRIMARY KEY,
     uploaded_at timestamp DEFAULT now(),
@@ -31,6 +40,7 @@ CREATE TABLE songs(
     duration decimal(10, 2) NOT NULL,
     file_url text NOT NULL,
     artist_id integer REFERENCES artists(id) ON DELETE CASCADE,
+    album_id integer REFERENCES albums(id) ON DELETE CASCADE,
     thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32',
     listens integer DEFAULT 0
 );

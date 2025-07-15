@@ -1,15 +1,15 @@
 import db from "#db/client";
 
-export async function createSong({ title, duration, file_url, artist_id, thumbnail_url }) {
+export async function createSong({ title, duration, file_url, artist_id, album_id, thumbnail_url }) {
   const SQL = `
-    INSERT INTO songs(title, duration, file_url, artist_id, thumbnail_url)
-    VALUES($1, $2, $3, $4, $5)
+    INSERT INTO songs(title, duration, file_url, artist_id, album_id, thumbnail_url)
+    VALUES($1, $2, $3, $4, $5, $6)
     RETURNING *
     `;
 
   const {
     rows: [song],
-  } = await db.query(SQL, [title, duration, file_url, artist_id, thumbnail_url]);
+  } = await db.query(SQL, [title, duration, file_url, artist_id, album_id, thumbnail_url]);
 
   return song;
 }

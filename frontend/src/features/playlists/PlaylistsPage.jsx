@@ -7,6 +7,9 @@ export default function PlaylistsPage() {
 
   return (
     <div className="playlistsContainer">
+      <form>
+        <input type="text" name="search" placeholder="Search" />
+      </form>
       <div className="playlists">
         {playlists.map((playlist) => {
           return <PlaylistCard key={playlist.id} playlist={playlist} />;

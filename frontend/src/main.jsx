@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 import { PlaylistProvider } from "./context/PlaylistContext.jsx";
 import { SongProvider } from "./context/SongContext.jsx";
+import { ArtistProvider } from "./context/ArtistContext.jsx";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById("root")).render(
       <ThemeProvider>
         <PlaylistProvider>
           <SongProvider>
-            <App />
+            <ArtistProvider>
+              <App />
+            </ArtistProvider>
           </SongProvider>
         </PlaylistProvider>
       </ThemeProvider>
