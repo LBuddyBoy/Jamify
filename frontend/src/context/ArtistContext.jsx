@@ -14,7 +14,7 @@ export function ArtistProvider({ children }) {
     queryFn: fetchArtists,
   });
 
-  if (isPending) {
+  if (isPending || !artists) {
     return <span>Loading</span>;
   }
 

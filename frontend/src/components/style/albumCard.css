@@ -1,0 +1,44 @@
+.albumCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+.albumCardInfo {
+  margin-top: 5px;
+}
+
+.albumCardInfo h2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.albumCardInfo span {
+  font-size: 15px;
+  font-weight: 350;
+}
+
+.albumCard img {
+  width: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .albumCards {
+    flex-wrap: wrap;
+  }
+
+  .albumCard {
+    width: 170px;
+  }
+
+  .albumCard img {
+    width: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+}

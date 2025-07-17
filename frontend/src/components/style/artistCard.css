@@ -1,0 +1,25 @@
+.artistCard {
+  padding: 15px;
+  transition: ease-in-out opacity 0.2s;
+}
+
+.artistCard:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.artistCard img {
+  width: 150px;
+  height: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artistCardInfo {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    
+}

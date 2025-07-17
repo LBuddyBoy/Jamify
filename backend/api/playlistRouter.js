@@ -5,6 +5,7 @@ import {
   deletePlaylist,
   getPlaylistById,
   getPlaylists,
+  getPlaylistsByName,
   updatePlaylist,
 } from "#db/query/playlists";
 import { addToPlaylist, getPlaylistSongs } from "#db/query/playlist_songs";
@@ -14,6 +15,12 @@ export default router;
 
 router.get("/", async (req, res) => {
   res.status(200).json(await getPlaylists());
+});
+
+router.get("/:query/:limit/:offset", async (req, res) => {
+  const { query, limit, offset } = query.param;
+
+  res.status(200).json(await getPlaylistsByName(query, limit, offset));
 });
 
 router.post("/", requireBody(["name"]), async (req, res) => {

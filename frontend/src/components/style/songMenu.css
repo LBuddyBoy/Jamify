@@ -1,0 +1,31 @@
+.songMenu {
+  position: fixed;
+  z-index: 1000;
+  padding: 16px 15px;
+  width: 180px;
+  max-width: 95vw;
+  background-color: var(--bg-menu);
+  border-radius: 15px;
+  box-shadow: 0 6px 32px 0 rgba(30,32,36,0.13), 0 1.5px 6px 0 rgba(30,32,36,0.06);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.songMenu p {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 7px 8px;
+  border-radius: 6px;
+  transition: background 0.18s, color 0.15s, opacity 0.2s;
+  margin: 0;
+  cursor: pointer;
+}
+
+.songMenu p:hover,
+.songMenu p:focus {
+  background-color: var(--bg-accent);
+  color: #fff;
+  opacity: 0.94;
+}

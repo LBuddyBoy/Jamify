@@ -2,6 +2,7 @@
   --bg-color: #f4f4f6;
   --bg-accent: #a259f7;
   --bg-secondary: #e3e6ee;
+  --bg-menu: #e3e6ee;
   --primary-color: #7c3aed;
   --text-color: #1a1a1d;
   --text-muted: #9eadbe;
@@ -18,6 +19,7 @@
 [data-theme="dark"] {
   --bg-color: #23242a;
   --bg-accent: #a259f7;
+  --bg-menu: #2f313b;
   --bg-secondary: #2e3037;
   --text-color: #eaeaea;
   --text-muted: #8e99a7;

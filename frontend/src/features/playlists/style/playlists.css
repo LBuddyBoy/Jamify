@@ -1,25 +1,36 @@
-.playlistsContainer {
-
-}
-
-.playlists {
-    display: flex;
-    flex-direction: column;
+.playlistCards {
+  display: flex;
+  flex-direction: column;
 }
 
 .playlistCard {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 0ch;
-    width: 250px;
-    height: 80px;
-    padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 400px;
+  height: 80px;
+  background-color: var(--bg-secondary);
+  padding: 5px;
+  margin-top: 8px;
+  border-radius: 10px;
+  transition: ease-in-out opacity 0.2s;
+}
+
+.playlistCard:hover {
+    cursor: pointer;
+    opacity: 50%;
 }
 
 .playlistCard img {
-    width: 50px;
-    width: 50px;
-    object-fit: contain;
+  width: 50px;
+  width: 50px;
+  object-fit: contain;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.playlistCardInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
 }

@@ -1,0 +1,78 @@
+.playlistMenu {
+  position: fixed;
+  z-index: 1000;
+  padding: 18px 15px;
+  width: 220px;
+  max-width: 95vw;
+  background-color: var(--bg-menu);
+  border-radius: 15px;
+  box-shadow: 0 6px 32px 0 rgba(30,32,36,0.13), 0 1.5px 6px 0 rgba(30,32,36,0.06);
+  color: var(--text-color);
+}
+
+.playlistMenuEdits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 2px solid var(--bg-color);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.playlistMenuEdits input {
+  width: 100%;
+  padding: 7px 8px;
+  font-size: 14px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--bg-secondary);
+  border-radius: 6px;
+  color: var(--text-color);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.playlistMenuEdits input:focus {
+  border-color: var(--primary-color);
+  background: var(--bg-secondary);
+}
+
+.playlistMenuEdits button {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 8px 0;
+  font-size: 15px;
+  margin-top: 3px;
+  transition: background 0.2s, opacity 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(122, 58, 237, 0.09);
+}
+
+.playlistMenuEdits button:hover,
+.playlistMenuEdits button:focus {
+  cursor: pointer;
+  background-color: var(--bg-accent);
+  opacity: 0.9;
+}
+
+.playlistMenuPlaylists {
+  margin-top: 8px;
+}
+
+.playlistMenuPlaylists li {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 6px;
+  border-radius: 6px;
+  margin: 4px 0;
+  list-style: none;
+  transition: background 0.18s, color 0.15s;
+  cursor: pointer;
+}
+
+.playlistMenuPlaylists li:hover,
+.playlistMenuPlaylists li:focus {
+  background-color: var(--bg-accent);
+  color: #fff;
+}

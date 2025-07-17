@@ -5,6 +5,37 @@
   padding: 5px;
 }
 
+.playlistsContainer header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.playlistsQueryButton {
+  background-color: var(--bg-color);
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.playlistsQueryButton:hover {
+  cursor: pointer;
+}
+
+.playlistsQuery {
+  margin-left: 10px;
+}
+
+.playlistsQuery input {
+  padding: 10px;
+  padding-left: 20px;
+  background-color: var(--bg-secondary);
+  border: none;
+  color: var(--text-color);
+  border-radius: 25px;
+  border: 1px solid var(--primary-color);
+}
 
 .playlistInfoContainer .playlistHeader {
   align-self: flex-start;
@@ -63,51 +94,4 @@
   justify-content: space-between;
   gap: 1.5ch;
   margin-top: 18px;
-}
-
-.songCard {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--bg-secondary);
-  padding: 10px 16px;
-  border-radius: 10px;
-  transition: background 0.2s;
-  margin-bottom: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
-  transition: ease-in-out opacity 0.3s;
-}
-
-.songCard:hover {
-  opacity: 50%;
-  color: #fff;
-}
-
-.songCard .songCardHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2.5ch;
-}
-
-.songCard .songCardHeader img {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  object-fit: cover;
-  background: var(--bg-color);
-}
-
-.songCard .songCardHeader h3 {
-  font-size: 1.05rem;
-  color: var(--text-color);
-}
-
-.songCard p {
-  color: var(--text-muted);
-  font-size: 0.97rem;
-  margin-left: 10px;
-  min-width: 55px;
-  text-align: right;
 }

@@ -1,4 +1,13 @@
-import { createArtist, deleteArtist, getArtistById, getArtists, getArtistSongs, updateArtist } from "#db/query/artists";
+import { createAlbum } from "#db/query/albums";
+import {
+  createArtist,
+  deleteArtist,
+  getArtistAlbums,
+  getArtistById,
+  getArtists,
+  getArtistSongs,
+  updateArtist,
+} from "#db/query/artists";
 import requireBody from "#middleware/requireBody";
 import express from "express";
 
@@ -37,11 +46,23 @@ router.get("/:id/songs", async (req, res) => {
   res.status(200).json(await getArtistSongs(req.artist.id));
 });
 
+router.get("/:id/albums", async (req, res) => {
+  res.status(200).json(await getArtistAlbums(req.artist.id));
+});
+
+router.post("/:id/albums", requireBody(["name"]), async (req, res) => {
+  const { name } = req.body;
+  const album = await createAlbum({ name, artist_id: req.artist.id });
+
+  res.status(201).json(album);
+});
+
 router.delete("/:id", async (req, res) => {
   res.status(204).json(await deleteArtist(req.artist.id));
 });
 
 router.put("/:id", async (req, res) => {
   const artist = await updateArtist(req.artist.id, req.body);
+  
   res.status(200).json(artist);
 });

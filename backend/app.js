@@ -4,6 +4,8 @@ import morgan from "morgan";
 import playlistRouter from "#api/playlistRouter";
 import songsRouter from "#api/songsRouter";
 import artistsRouter from "#api/artistsRouter";
+import { search } from "#db/query/search";
+import requireBody from "#middleware/requireBody";
 
 const app = express();
 
@@ -17,7 +19,20 @@ app.use("/songs", songsRouter);
 app.use("/artists", artistsRouter);
 
 app.get("/", (req, res) => {
-    res.send("Jamify Online ✅");
+  res.send("Jamify Online ✅");
+});
+
+app.post("/search/:query", requireBody(["artistsOffset", "songsOffset", "albumsOffset"]), async (req, res) => {
+  const { query } = req.params;
+  let { artistsOffset, songsOffset, albumsOffset } = req.body;
+
+  if (!artistsOffset) artistsOffset = 0;
+  if (!songsOffset) songsOffset = 0;
+  if (!albumsOffset) albumsOffset = 0;
+
+  const data = await search(query, artistsOffset, songsOffset, albumsOffset);
+
+  res.status(200).json(data);
 });
 
 app.use((err, req, res, next) => {
@@ -33,6 +48,5 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send("Sorry! Something went wrong.");
 });
-
 
 export default app;

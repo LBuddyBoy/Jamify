@@ -3,11 +3,12 @@ import { useSong } from "../context/SongContext";
 import axios from "../api/axios";
 import "./style/songPlaying.css";
 import { useRef } from "react";
+import AudioControls from "./AudioControls";
 
 export default function SongPlaying() {
   const { songPlaying, stopPlaying } = useSong();
   const [audioURL, setAudioURL] = useState(null);
-  const audioRef = useRef();
+  const audio = useRef();
 
   useEffect(() => {
     const fetchAudio = async () => {
@@ -26,11 +27,11 @@ export default function SongPlaying() {
   }, [songPlaying]);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.5;
-      console.log("Found refernece");
+    if (audio.current) {
+      console.log(audio.current);
+      audio.current.volume = 0.1;
     }
-  }, []);
+  });
 
   if (!songPlaying || !audioURL) return null;
 
@@ -46,15 +47,15 @@ export default function SongPlaying() {
       <div className="song-playing-info">
         <h3 className="song-title">{songPlaying.title}</h3>
         <audio
-          ref={audioRef}
+          ref={audio}
           src={audioURL}
-          controls
-          controlsList="nodownload noplaybackspeed"
           autoPlay
           className="audio-player"
           onEnded={() => stopPlaying()}
         />
       </div>
+
+      <AudioControls audio={audio}></AudioControls>
     </section>
   );
 }

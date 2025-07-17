@@ -1,13 +1,22 @@
+import { useNavigate } from "react-router";
+import { useSearch } from "../context/SearchContext";
 import { useTheme } from "../context/ThemeContext";
 import "./style/nav.css";
 
 export default function NavBar({ menuOpen, handleToggle }) {
   const { theme, toggleTheme } = useTheme();
+  const { query, setQuery } = useSearch();
+  const navigate = useNavigate();
 
   return (
     <div className="navbar">
-      <form>
-        <input type="text" name="search" placeholder="Search" />
+      <form action={() => navigate("/search/" + query)}>
+        <input
+          type="text"
+          name="search"
+          placeholder="Search"
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </form>
       <div className="navbar-items">
         {!menuOpen && (

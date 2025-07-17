@@ -60,6 +60,18 @@ export async function getPlaylists() {
   return rows;
 }
 
+export async function getPlaylistsByName(name, limit, offset) {
+  const SQL = `
+  SELECT * FROM playlists
+  WHERE name ILIKE $1
+  LIMIT $2 OFFSET $3
+  `;
+
+  const { rows } = await db.query(SQL, [`%${name}%`, limit, offset]);
+
+  return rows;
+}
+
 export async function getPlaylistById(id) {
   const SQL = `
     SELECT playlists.*, json_agg(playlist_songs.song) AS songs

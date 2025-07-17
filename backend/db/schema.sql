@@ -4,8 +4,8 @@ CREATE DATABASE jamify;
 \c jamify;
 
 DROP TABLE IF EXISTS playlist_songs;
-DROP TABLE IF EXISTS albums;
 DROP TABLE IF EXISTS songs;
+DROP TABLE IF EXISTS albums;
 DROP TABLE IF EXISTS playlists;
 DROP TABLE IF EXISTS artists;
 
@@ -27,10 +27,10 @@ CREATE TABLE artists(
 
 CREATE TABLE albums(
     id serial PRIMARY KEY,
-    artist_id integer REFERENCES artists(id),
     created_at timestamp DEFAULT now(),
     name text NOT NULL,
-    thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32'
+    thumbnail_url text NOT NULL DEFAULT 'https://www.gravatar.com/avatar/?d=mp&s=32',
+    artist_id integer REFERENCES artists(id)
 );
 
 CREATE TABLE songs(

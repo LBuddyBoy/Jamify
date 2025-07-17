@@ -9,7 +9,7 @@ export default function PlaylistCard({ playlist }) {
       onClick={() => navigate("/playlists/" + playlist.id)}
     >
       <img src={playlist.image_url} />
-      <div className="playlistCardText">
+      <div className="playlistCardInfo">
         <h4>{playlist.name}</h4>
         <p>Playlist • EthanToups</p>
       </div>

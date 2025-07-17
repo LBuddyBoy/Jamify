@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import axios from "../../api/axios";
-import SongCard from "./components/SongCard";
+import SongCard from "../../components/SongCard";
 import "./style/playlistPage.css";
 import { totalDuration } from "../../utils/utils";
 
@@ -38,8 +38,7 @@ export default function PlaylistPage() {
           <h1 className="playlist-title">{playlist.name}</h1>
           <h2 className="playlist-owner">{playlist.owner || "EthanToups"}</h2>
           <div className="playlist-meta">
-            <span>{playlist.songs.length} songs</span>
-            <span>• {totalDuration(playlist.songs)}</span>
+            <span>{playlist.songs.length} songs • {totalDuration(playlist.songs)}</span>
           </div>
         </div>
       </header>

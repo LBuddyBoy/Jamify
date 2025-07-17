@@ -73,16 +73,30 @@ export async function getArtistById(id) {
   return artist;
 }
 
-export async function getArtistSongs(id, start, limit) {
+export async function getArtistSongs(id) {
   const SQL = `
-    SELECT artists.*, json_agg(songs) AS songs
-    FROM artists
-    JOIN songs ON songs.artist_id = $1 AND 
-    WHERE artists.id = $1
-    GROUP BY artists.id
-    `;
+  SELECT songs.*
+  FROM songs
+  JOIN artists ON artists.id = $1
+  WHERE songs.artist_id = artists.id
+  GROUP BY songs.id
+  `;
 
-  const { rows } = await db.query(SQL, [id, start, limit]);
+  const { rows } = await db.query(SQL, [id]);
+
+  return rows;
+}
+
+export async function getArtistAlbums(id) {
+  const SQL = `
+  SELECT albums.*
+  FROM albums
+  JOIN artists ON artists.id = $1
+  WHERE albums.artist_id = artists.id
+  GROUP BY albums.id
+  `;
+
+  const { rows } = await db.query(SQL, [id]);
 
   return rows;
 }

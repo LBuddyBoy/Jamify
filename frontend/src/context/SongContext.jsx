@@ -4,6 +4,7 @@ const SongContext = createContext();
 
 export function SongProvider({ children }) {
   const [songPlaying, setSongPlaying] = useState(null);
+  const [currentlyInteracting, setCurrentlyInteracting] = useState(null);
 
   const startPlaying = (song) => {
     setSongPlaying(song);
@@ -14,6 +15,8 @@ export function SongProvider({ children }) {
   }
 
   const value = {
+    currentlyInteracting,
+    setCurrentlyInteracting,
     songPlaying,
     stopPlaying,
     startPlaying,

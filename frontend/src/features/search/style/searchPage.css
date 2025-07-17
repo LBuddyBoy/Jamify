@@ -1,0 +1,13 @@
+.artistCards,
+.songCards,
+.albumCards {
+  display: flex;
+}
+
+.songCards {
+  flex-direction: column;
+}
+
+.artistCards {
+  flex-direction: row;
+}
