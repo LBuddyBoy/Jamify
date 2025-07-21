@@ -1,53 +1,21 @@
-import { useEffect, useRef } from "react";
 import { useSong } from "../context/SongContext";
-import { secondsToMMSS } from "../utils/utils";
+import { getMenuPosition, secondsToMMSS } from "../utils/utils";
 import "./style/songCard.css";
-import SongMenu from "./SongMenu";
-import { usePlaylist } from "../context/PlaylistContext";
+import SongMenu from "./songMenu/SongMenu";
 
 export default function SongCard({ song, showListens = false }) {
   const { currentlyInteracting, setCurrentlyInteracting } = useSong();
-  const { playlistMenuRef } = usePlaylist();
-  const songRef = useRef();
 
-  useEffect(() => {
-    const handleRightClick = (event) => {
-      if (
-        event.button !== 2 ||
-        !songRef.current ||
-        !songRef.current.contains(event.target)
-      ) {
-        if (playlistMenuRef && playlistMenuRef.current && playlistMenuRef.current.contains(event.target)) return;
+  const handleRightClick = (event) => {
+    const { x, y } = getMenuPosition(event.clientX, event.clientY, 180, 100);
 
-        setCurrentlyInteracting(null);
-        return;
-      }
-
-      event.preventDefault();
-      setCurrentlyInteracting({
-        song,
-        x: event.clientX,
-        y: event.clientY,
-      });
-
-      console.log(" ");
-      console.log("Showing ", song);
-      console.log("X ", event.clientX);
-      console.log("Y ", event.clientY);
-    };
-
-    const handleContextMenu = (event) => {
-      event.preventDefault();
-    };
-
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("mousedown", handleRightClick);
-
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("mousedown", handleRightClick);
-    };
-  }, [playlistMenuRef, setCurrentlyInteracting, song]);
+    event.preventDefault();
+    setCurrentlyInteracting({
+      song,
+      x: x,
+      y: y,
+    });
+  };
 
   const isInteracting =
     currentlyInteracting && currentlyInteracting.song.id === song.id;
@@ -56,7 +24,7 @@ export default function SongCard({ song, showListens = false }) {
     <>
       <div
         className={"songCard" + (isInteracting ? " active" : "")}
-        ref={songRef}
+        onAuxClick={handleRightClick}
       >
         <div className="songCardHeader">
           <ActionButton song={song} />

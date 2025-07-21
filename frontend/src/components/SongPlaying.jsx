@@ -24,6 +24,10 @@ export default function SongPlaying() {
     };
 
     fetchAudio();
+
+    return () => {
+      
+    }
   }, [songPlaying]);
 
   useEffect(() => {

@@ -50,12 +50,13 @@ export async function updatePlaylist(id, fields) {
   return playlist;
 }
 
-export async function getPlaylists() {
+export async function getPlaylists(userId) {
   const SQL = `
     SELECT * FROM playlists
+    WHERE owner_id = $1
     `;
 
-  const { rows } = await db.query(SQL);
+  const { rows } = await db.query(SQL, [userId]);
 
   return rows;
 }
@@ -74,9 +75,9 @@ export async function getPlaylistsByName(name, limit, offset) {
 
 export async function getPlaylistById(id) {
   const SQL = `
-    SELECT playlists.*, json_agg(playlist_songs.song) AS songs
+    SELECT playlists.*, COALESCE(json_agg(playlist_songs.song) FILTER (WHERE playlist_songs.song IS NOT NULL), '[]') AS songs
     FROM playlists
-    JOIN (
+    LEFT JOIN (
         SELECT playlist_songs.*, json_build_object(
             'added_at', playlist_songs.added_at,
             'id', songs.id,

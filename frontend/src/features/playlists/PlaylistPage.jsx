@@ -13,10 +13,10 @@ export default function PlaylistPage() {
     isPending,
     error,
   } = useQuery({
-    queryKey: ["playlist"],
+    queryKey: ["playlist", id],
     queryFn: async () => {
       return (await axios.get("/playlists/" + id)).data;
-    },
+    }
   });
 
   if (isPending || !playlist) {
@@ -30,15 +30,14 @@ export default function PlaylistPage() {
   return (
     <div className="playlistInfoContainer">
       <header className="playlistHeader">
-        <img
-          src={playlist.image_url}
-          alt={playlist.name + " playlist cover"}
-        />
+        <img src={playlist.image_url} alt={playlist.name + " playlist cover"} />
         <div className="playlistHeaderInfo">
           <h1 className="playlist-title">{playlist.name}</h1>
           <h2 className="playlist-owner">{playlist.owner || "EthanToups"}</h2>
           <div className="playlist-meta">
-            <span>{playlist.songs.length} songs • {totalDuration(playlist.songs)}</span>
+            <span>
+              {playlist.songs.length} songs • {totalDuration(playlist.songs)}
+            </span>
           </div>
         </div>
       </header>

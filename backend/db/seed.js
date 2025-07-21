@@ -5,6 +5,7 @@ import { createSong, getSongs } from "./query/songs.js";
 import { addToPlaylist } from "./query/playlist_songs.js";
 import { createArtist, updateArtist } from "./query/artists.js";
 import { createAlbum } from "./query/albums.js";
+import { createUser } from "./query/users.js";
 
 const customLocale = {
   title: "My custom locale",
@@ -23,6 +24,13 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
+  const users = [
+    {
+      username: "Ethan",
+      email: "ethantoups05@gmail.com",
+      password: "password123",
+    },
+  ];
   const playlists = [
     { name: "Chill", owner_id: 1 },
     { name: "Summer", owner_id: 1 },
@@ -166,8 +174,7 @@ async function seed() {
     {
       name: "Miguel",
       bio: customFaker.lorem.paragraph(),
-      avatar_url:
-        "https://i8.amplience.net/i/naras/MI0004336408-MN0002570457",
+      avatar_url: "https://i8.amplience.net/i/naras/MI0004336408-MN0002570457",
     },
     {
       name: "SZA",
@@ -240,6 +247,12 @@ async function seed() {
     },
   ];
 
+  for (const index in users) {
+    const user = users[index];
+
+    await createUser(user);
+  }
+
   for (const index in playlists) {
     const playlist = playlists[index];
 
@@ -250,7 +263,9 @@ async function seed() {
     const artist = artists[index];
     const created = await createArtist(artist);
 
-    console.log(await updateArtist(created.id, { avatar_url: artist.avatar_url }))
+    console.log(
+      await updateArtist(created.id, { avatar_url: artist.avatar_url })
+    );
   }
 
   for (const index in albums) {

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../../../api/axios";
 import AlbumCard from "../../../components/AlbumCard";
+import { fetchArtistAlbums } from "../../../api/api";
 
 export default function ArtistAlbums({ artist_id }) {
   const {
@@ -10,9 +10,7 @@ export default function ArtistAlbums({ artist_id }) {
     isPending,
   } = useQuery({
     queryKey: ["artist_albums"],
-    queryFn: async () => {
-      return (await axios.get("/artists/" + artist_id + "/albums")).data;
-    },
+    queryFn: () => fetchArtistAlbums(artist_id),
   });
 
   if (isPending || !albums) {

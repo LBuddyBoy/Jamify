@@ -1,11 +1,13 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import usersRouter from "#api/usersRouter";
 import playlistRouter from "#api/playlistRouter";
 import songsRouter from "#api/songsRouter";
 import artistsRouter from "#api/artistsRouter";
 import { search } from "#db/query/search";
 import requireBody from "#middleware/requireBody";
+import getUserFromToken from "#middleware/getUserFromToken";
 
 const app = express();
 
@@ -14,6 +16,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+app.use(getUserFromToken);
+
+app.use("/users", usersRouter);
 app.use("/playlists", playlistRouter);
 app.use("/songs", songsRouter);
 app.use("/artists", artistsRouter);

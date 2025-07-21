@@ -89,11 +89,11 @@ export async function getArtistSongs(id) {
 
 export async function getArtistAlbums(id) {
   const SQL = `
-  SELECT albums.*
+  SELECT albums.*, row_to_json(artists) AS artist
   FROM albums
   JOIN artists ON artists.id = $1
   WHERE albums.artist_id = artists.id
-  GROUP BY albums.id
+  GROUP BY albums.id, artists.*
   `;
 
   const { rows } = await db.query(SQL, [id]);

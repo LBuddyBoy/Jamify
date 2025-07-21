@@ -6,7 +6,7 @@ import {
   DeleteObjectCommand,
   GetObjectCommand,
 } from "@aws-sdk/client-s3";
-import { createSong, deleteSong, getSongById, getSongs } from "#db/query/songs";
+import { addListenToSong, createSong, deleteSong, getSongById, getSongs } from "#db/query/songs";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import requireBody from "#middleware/requireBody";
 import { extractDuration } from "#util/getVideoDuration";
@@ -117,6 +117,12 @@ router.delete("/:id", async (req, res) => {
     console.error(err);
     res.status(500).send("There was an error processing your request.");
   }
+});
+
+router.put("/:id/listened", async (req, res) => {
+  await addListenToSong(req.song.id);
+
+  res.status(200).send("Successfully added a listen.");
 });
 
 export default router;

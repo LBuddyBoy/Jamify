@@ -1,6 +1,13 @@
 import db from "#db/client";
 
-export async function createSong({ title, duration, file_url, artist_id, album_id, thumbnail_url }) {
+export async function createSong({
+  title,
+  duration,
+  file_url,
+  artist_id,
+  album_id,
+  thumbnail_url,
+}) {
   const SQL = `
     INSERT INTO songs(title, duration, file_url, artist_id, album_id, thumbnail_url)
     VALUES($1, $2, $3, $4, $5, $6)
@@ -9,11 +16,17 @@ export async function createSong({ title, duration, file_url, artist_id, album_i
 
   const {
     rows: [song],
-  } = await db.query(SQL, [title, duration, file_url, artist_id, album_id, thumbnail_url]);
+  } = await db.query(SQL, [
+    title,
+    duration,
+    file_url,
+    artist_id,
+    album_id,
+    thumbnail_url,
+  ]);
 
   return song;
 }
-
 
 export async function deleteSong(id) {
   const SQL = `
@@ -25,6 +38,21 @@ export async function deleteSong(id) {
   const {
     rows: [song],
   } = await db.query(SQL, [id]);
+
+  return song;
+}
+
+export async function addListenToSong(songId) {
+  const SQL = `
+  UPDATE songs
+  SET listens = listens + 1
+  WHERE id = $1
+  RETURNING *
+  `;
+
+  const {
+    rows: [song],
+  } = await db.query(SQL[songId]);
 
   return song;
 }
@@ -63,7 +91,6 @@ export async function getSongById(id) {
 
   return song;
 }
-
 
 export async function getSongs() {
   const SQL = `

@@ -8,13 +8,16 @@ import {
   getPlaylistsByName,
   updatePlaylist,
 } from "#db/query/playlists";
-import { addToPlaylist, getPlaylistSongs } from "#db/query/playlist_songs";
+import { addToPlaylist, getPlaylistSongs, removeFromPlaylist } from "#db/query/playlist_songs";
 import { getSongById } from "#db/query/songs";
+import { requireUser } from "#middleware/requireUser";
+
 const router = express.Router();
-export default router;
+
+router.use(requireUser);
 
 router.get("/", async (req, res) => {
-  res.status(200).json(await getPlaylists());
+  res.status(200).json(await getPlaylists(req.user.id));
 });
 
 router.get("/:query/:limit/:offset", async (req, res) => {
@@ -77,3 +80,18 @@ router.post("/:id/songs/:songId", async (req, res) => {
 
   res.status(200).json(playlist_song);
 });
+
+router.delete("/:id/songs/:songId", async (req, res) => {
+  const playlist_song = await removeFromPlaylist({
+    playlist_id: req.playlist.id,
+    song_id: req.song.id,
+  });
+
+  if (!playlist_song) {
+    return res.status(404).send("Couldn't find a song to delete.");
+  }
+
+  res.status(204);
+});
+
+export default router;

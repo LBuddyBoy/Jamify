@@ -8,23 +8,26 @@ import { PlaylistProvider } from "./context/PlaylistContext.jsx";
 import { SongProvider } from "./context/SongContext.jsx";
 import { ArtistProvider } from "./context/ArtistContext.jsx";
 import { SearchProvider } from "./context/SearchContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
-      <ThemeProvider>
-        <PlaylistProvider>
-          <SongProvider>
-            <ArtistProvider>
-              <SearchProvider>
-                <App />
-              </SearchProvider>
-            </ArtistProvider>
-          </SongProvider>
-        </PlaylistProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <PlaylistProvider>
+            <SongProvider>
+              <ArtistProvider>
+                <SearchProvider>
+                  <App />
+                </SearchProvider>
+              </ArtistProvider>
+            </SongProvider>
+          </PlaylistProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   </QueryClientProvider>
 );

@@ -14,6 +14,20 @@ export async function addToPlaylist({ playlist_id, song_id }) {
   return playlist_song;
 }
 
+export async function removeFromPlaylist({ playlist_id, song_id }) {
+  const SQL = `
+    DELETE FROM playlist_songs
+    WHERE playlist_id = $1 AND song_id = $2
+    RETURNING *
+    `;
+
+  const {
+    rows: [playlist_song],
+  } = await db.query(SQL, [playlist_id, song_id]);
+
+  return playlist_song;
+}
+
 export async function getPlaylistSongs(playlist_id) {
     const SQL = `
     SELECT playlist_songs.*, row_to_json(songs.*) AS song

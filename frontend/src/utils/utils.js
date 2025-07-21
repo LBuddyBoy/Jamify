@@ -15,6 +15,23 @@ export function totalDuration(songs) {
   return hours ? `${hours} hr ${mins} min` : `${mins} min`;
 }
 
+export function getMenuPosition(clickX, clickY, menuWidth, menuHeight) {
+  const padding = 16;
+  let x = clickX;
+  let y = clickY;
+
+  if (x + menuWidth + padding > window.innerWidth) {
+    x = window.innerWidth - menuWidth - padding;
+  }
+  if (y + menuHeight + padding > window.innerHeight) {
+    y = window.innerHeight - menuHeight - padding;
+  }
+  x = Math.max(x, padding);
+  y = Math.max(y, padding);
+
+  return { x, y };
+}
+
 export function match(name, search) {
   if (!search) return true;
 
